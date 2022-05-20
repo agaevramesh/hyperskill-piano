@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Virtual Piano</title>
+    <style>
+        body {
+            background: green;
+            /*display: flex;*/
+            /*justify-content: center;*/
+            /*align-items: center;*/
+
+
+        }
+        .container {
+            width: 300px;
+            height: 100px;
+            padding: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -70px 0 0 -170px;
+            /*margin: auto;*/
+            /*position: absolute;*/
+            /*top: 50%;*/
+            /*left: 50%;*/
+            /*-ms-transform: translate(-50%, -50%);*/
+            /*transform: translate(-50%, -50%);*/
+        }
+        kbd {
+            text-align: center;
+            display: inline-block;;
+        }
+        .white-keys kbd {
+            background: white;
+            margin-left: -8px;
+            height: 100px;
+            width: 40px;
+            border: solid gray;
+        }
+        .black-keys kbd {
+            position: relative;
+            top: -106px;
+            background: black;
+            color: white;
+            height: 60px;
+            width: 30px;
+            left: 20px;
+        }
+        #E {
+            left: 28px;
+        }
+        #T {
+            left: 78px;
+        }
+        #Y {
+            left: 86px;
+        }
+        #U {
+            left: 94px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="white-keys">
+        <kbd>A</kbd>
+        <kbd>S</kbd>
+        <kbd>D</kbd>
+        <kbd>F</kbd>
+        <kbd>G</kbd>
+        <kbd>H</kbd>
+        <kbd>J</kbd>
+    </div>
+    <div class="black-keys">
+        <kbd>W</kbd>
+        <kbd id="E">E</kbd>
+        <kbd id="T">T</kbd>
+        <kbd id="Y">Y</kbd>
+        <kbd id="U">U</kbd>
+    </div>
+</div>
+<script>
+    const codes = "ASDFGHJWETYU";
+    document.addEventListener("keydown", function(event) {
+        if (codes.includes(event.key.toUpperCase())) {
+            const word = event.key.toUpperCase();
+            let audio = new Audio(`keys_sound/${word}.mp3`);
+            // audio.load();
+            audio.play();
+            console.log(`The '${word}' key is pressed.`);
+        }
+        else console.warn("Other key pressed");
+    });
+</script>
+</body>
+</html>
